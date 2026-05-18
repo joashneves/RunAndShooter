@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cjdsyaujwgpn2"]
+
+[ext_resource type="PackedScene" uid="uid://dkxp38m4xj7dk" path="res://Scene/Player/player.tscn" id="1_3j58g"]
+[ext_resource type="Texture2D" uid="uid://cpa55wjgwhnym" path="res://Assets/Sprite-0001.png" id="2_3j58g"]
+[ext_resource type="PackedScene" uid="uid://dsyp22l6y0mkb" path="res://Scene/Camera/camera_de_level.tscn" id="3_hd250"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3j58g"]
+size = Vector2(16, 16)
+
+[node name="Level" type="Node2D" unique_id=376255386]
+
+[node name="Player" parent="." unique_id=134499622 instance=ExtResource("1_3j58g")]
+position = Vector2(0, -9)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1379029840]
+position = Vector2(1312.0001, 33)
+scale = Vector2(188.82195, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2" unique_id=516131244]
+texture = ExtResource("2_3j58g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=2140907054]
+shape = SubResource("RectangleShape2D_3j58g")
+
+[node name="CameraDeLevel" parent="." unique_id=669598116 node_paths=PackedStringArray("alvo") instance=ExtResource("3_hd250")]
+alvo = NodePath("../Player")
