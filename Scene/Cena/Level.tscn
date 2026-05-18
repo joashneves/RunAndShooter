@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dkxp38m4xj7dk" path="res://Scene/Player/player.tscn" id="1_3j58g"]
 [ext_resource type="Texture2D" uid="uid://cpa55wjgwhnym" path="res://Assets/Sprite-0001.png" id="2_3j58g"]
 [ext_resource type="PackedScene" uid="uid://dsyp22l6y0mkb" path="res://Scene/Camera/camera_de_level.tscn" id="3_hd250"]
+[ext_resource type="PackedScene" uid="uid://wjvpxhewn7yp" path="res://Scene/Inimigos/Inimigo_base/inimigo.tscn" id="4_3o5mm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3j58g"]
 size = Vector2(16, 16)
@@ -13,8 +14,12 @@ size = Vector2(16, 16)
 position = Vector2(0, -9)
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1379029840]
+light_mask = 3
+visibility_layer = 3
 position = Vector2(1312.0001, 33)
 scale = Vector2(188.82195, 1)
+collision_layer = 3
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2" unique_id=516131244]
 texture = ExtResource("2_3j58g")
@@ -24,3 +29,6 @@ shape = SubResource("RectangleShape2D_3j58g")
 
 [node name="CameraDeLevel" parent="." unique_id=669598116 node_paths=PackedStringArray("alvo") instance=ExtResource("3_hd250")]
 alvo = NodePath("../Player")
+
+[node name="Inimigo" parent="." unique_id=144424640 instance=ExtResource("4_3o5mm")]
+position = Vector2(87, 0)

@@ -23,7 +23,6 @@ func atirar():
 	var tiro = TIRO_PLAYER_BASE.instantiate()
 	tiro.global_position = global_position
 	tiro.direcao = direcao_visao_var
-	
 	get_tree().root.add_child(tiro)
 
 func movimento(delta : float):
