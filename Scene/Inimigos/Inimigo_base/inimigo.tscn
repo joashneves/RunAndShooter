@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://wjvpxhewn7yp"]
 
-[ext_resource type="Texture2D" uid="uid://bvirc5jq070d8" path="res://Assets/player_temp.png" id="1_37wxc"]
 [ext_resource type="Script" uid="uid://dllqig3lermqi" path="res://Scene/Inimigos/Inimigo_base/inimigo_base.gd" id="1_pfh8l"]
+[ext_resource type="Texture2D" uid="uid://cffhqsp1ocp0f" path="res://Assets/Inimigos/Inimigo_base.png" id="2_pfh8l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3o5mm"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_37wxc")
+"texture": ExtResource("2_pfh8l")
 }],
 "loop": true,
 "name": &"default",
@@ -16,6 +16,9 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3o5mm"]
 size = Vector2(6, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfh8l"]
+size = Vector2(9, 9)
 
 [node name="Inimigo" type="CharacterBody2D" unique_id=144424640 groups=["inimigos"]]
 collision_layer = 2
@@ -32,5 +35,13 @@ shape = SubResource("RectangleShape2D_3o5mm")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1554563176]
 scale = Vector2(0.30248886, 0.5429862)
+rect = Rect2(-16.529533, -11.050004, 33.059067, 22.100008)
+
+[node name="AreaDeHit" type="Area2D" parent="." unique_id=1120340530]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeHit" unique_id=16991220]
+position = Vector2(7, 0)
+shape = SubResource("RectangleShape2D_pfh8l")
 
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="body_entered" from="AreaDeHit" to="." method="_on_area_de_hit_body_entered"]

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cpa55wjgwhnym" path="res://Assets/Sprite-0001.png" id="2_3j58g"]
 [ext_resource type="PackedScene" uid="uid://dsyp22l6y0mkb" path="res://Scene/Camera/camera_de_level.tscn" id="3_hd250"]
 [ext_resource type="PackedScene" uid="uid://wjvpxhewn7yp" path="res://Scene/Inimigos/Inimigo_base/inimigo.tscn" id="4_3o5mm"]
+[ext_resource type="PackedScene" uid="uid://divn075mmdc5k" path="res://Scene/Upgrades/upgrade.tscn" id="5_g363h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3j58g"]
 size = Vector2(16, 16)
@@ -11,7 +12,7 @@ size = Vector2(16, 16)
 [node name="Level" type="Node2D" unique_id=376255386]
 
 [node name="Player" parent="." unique_id=134499622 instance=ExtResource("1_3j58g")]
-position = Vector2(0, -9)
+position = Vector2(-77, -2)
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1379029840]
 light_mask = 3
@@ -31,4 +32,15 @@ shape = SubResource("RectangleShape2D_3j58g")
 alvo = NodePath("../Player")
 
 [node name="Inimigo" parent="." unique_id=144424640 instance=ExtResource("4_3o5mm")]
-position = Vector2(87, 0)
+position = Vector2(176, 12)
+
+[node name="Inimigo2" parent="." unique_id=536494706 instance=ExtResource("4_3o5mm")]
+position = Vector2(216, -16)
+
+[node name="Inimigo4" parent="." unique_id=1050166792 instance=ExtResource("4_3o5mm")]
+position = Vector2(411, -24)
+
+[node name="Inimigo3" parent="." unique_id=931030878 instance=ExtResource("4_3o5mm")]
+position = Vector2(268, -21)
+
+[node name="Upgrade" parent="." unique_id=932536405 instance=ExtResource("5_g363h")]

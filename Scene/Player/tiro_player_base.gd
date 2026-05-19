@@ -2,7 +2,13 @@ extends Area2D
 
 @export var velocidade_da_bala : float = 200;
 @export var direcao : Vector2 = Vector2.RIGHT;
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
+
 func _ready() -> void:
+
+	animated_sprite_2d.frame = randi_range(0,3)
 	if direcao == Vector2.ZERO:
 		direcao = Vector2.RIGHT
 

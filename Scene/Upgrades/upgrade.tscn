@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://divn075mmdc5k"]
+
+[ext_resource type="Script" uid="uid://dafwbdoq84l07" path="res://Scene/Upgrades/upgrade.gd" id="1_85707"]
+[ext_resource type="Texture2D" uid="uid://cbg7lbvh1mmf5" path="res://Assets/upgrades/upgrade_arma.png" id="1_qj2wy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8lam"]
+size = Vector2(15, 15)
+
+[node name="Upgrade" type="Area2D" unique_id=932536405 groups=["upgrade_coletavel"]]
+script = ExtResource("1_85707")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=792982724]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_m8lam")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=68320625 groups=["upgrade_coletavel"]]
+texture = ExtResource("1_qj2wy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

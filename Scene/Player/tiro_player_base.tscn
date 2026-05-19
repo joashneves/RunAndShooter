@@ -1,23 +1,59 @@
 [gd_scene format=3 uid="uid://d1xy77uo40bm0"]
 
 [ext_resource type="Script" uid="uid://u773ocjohgux" path="res://Scene/Player/tiro_player_base.gd" id="1_huo5k"]
-[ext_resource type="Texture2D" uid="uid://bt0jnn10mpjfa" path="res://Assets/tiro.png" id="1_ue687"]
+[ext_resource type="Texture2D" uid="uid://dupdckbar5qqm" path="res://Assets/Tiro/tiro_player.png" id="2_huo5k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g363h"]
 radius = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8o80q"]
+atlas = ExtResource("2_huo5k")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sivpr"]
+atlas = ExtResource("2_huo5k")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd02c"]
+atlas = ExtResource("2_huo5k")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmbo2"]
+atlas = ExtResource("2_huo5k")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mnr3e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8o80q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sivpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd02c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmbo2")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
 
 [node name="Tiro_player_base" type="Area2D" unique_id=1393200423 groups=["tiro_do_player"]]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_huo5k")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1303058792]
-texture = ExtResource("1_ue687")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1722386214]
 shape = SubResource("CircleShape2D_g363h")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1626322457]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=498427497]
+sprite_frames = SubResource("SpriteFrames_mnr3e")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

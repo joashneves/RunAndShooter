@@ -26,6 +26,8 @@ window/stretch/aspect="expand"
 
 tiro_do_player="O tiro do player"
 inimigos="Grupo do inimigos"
+players="Grupo dos players"
+upgrade_coletavel=""
 
 [input]
 
