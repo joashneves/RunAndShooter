@@ -26,7 +26,6 @@ collision_mask = 2
 script = ExtResource("1_pfh8l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2028544022]
-modulate = Color(1, 0.023529412, 0.015686275, 1)
 sprite_frames = SubResource("SpriteFrames_3o5mm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=700590504]
