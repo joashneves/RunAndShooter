@@ -88,3 +88,9 @@ func direcao_visao():
 		direcao_visao_var = Vector2.UP
 	elif Input.is_action_just_pressed("tecla_baixo"):
 		direcao_visao_var = Vector2.DOWN
+
+
+func _on_player_colisao_com_projetil_area_entered(area: Area2D) -> void:
+	if area.is_in_group("inimigo_tiro"):
+		area.queue_free()
+		get_tree().reload_current_scene()

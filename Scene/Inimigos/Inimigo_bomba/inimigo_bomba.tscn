@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://7pxbhmy7qcda"]
+
+[ext_resource type="Script" uid="uid://blnv3c8qxjpwt" path="res://Scene/Inimigos/Inimigo_bomba/inimigo_bomba.gd" id="1_h1ouv"]
+[ext_resource type="PackedScene" uid="uid://bnbsicg7f1lr1" path="res://Scene/Inimigos/Inimigo_base/Tiro_inimigo.tscn" id="2_052sa"]
+[ext_resource type="Texture2D" uid="uid://dq7juuyugwxl0" path="res://Assets/Inimigos/Inimigo_bomba/Inimigo_bomba.png" id="3_h1ouv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3o5mm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_h1ouv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3o5mm"]
+size = Vector2(12, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfh8l"]
+size = Vector2(9, 9)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pfh8l"]
+radius = 7.0
+
+[node name="Inimigo" type="CharacterBody2D" unique_id=144424640 groups=["inimigos"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_h1ouv")
+projetil = ExtResource("2_052sa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2028544022]
+sprite_frames = SubResource("SpriteFrames_3o5mm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=700590504]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_3o5mm")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1554563176]
+scale = Vector2(0.30248886, 0.5429862)
+rect = Rect2(-16.529533, -11.050004, 33.059067, 22.100008)
+
+[node name="AreaDeHit" type="Area2D" parent="." unique_id=1120340530]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeHit" unique_id=16991220]
+position = Vector2(7, 0)
+shape = SubResource("RectangleShape2D_pfh8l")
+
+[node name="AreaDePlayer" type="Area2D" parent="." unique_id=983048244]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDePlayer" unique_id=1030744583]
+shape = SubResource("CircleShape2D_pfh8l")
+debug_color = Color(0.8272523, 0.3956009, 0, 0.15294118)
+
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="body_entered" from="AreaDeHit" to="." method="_on_area_de_hit_body_entered"]
+[connection signal="body_entered" from="AreaDePlayer" to="." method="_on_area_de_player_body_entered"]

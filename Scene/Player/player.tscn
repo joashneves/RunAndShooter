@@ -17,6 +17,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hd250"]
 size = Vector2(6, 11)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yic5t"]
+size = Vector2(6, 11)
+
 [node name="player" type="CharacterBody2D" unique_id=134499622 groups=["players"]]
 script = ExtResource("1_yic5t")
 
@@ -27,3 +30,12 @@ sprite_frames = SubResource("SpriteFrames_3j58g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=960315573]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_hd250")
+
+[node name="Player_colisao_com_projetil" type="Area2D" parent="." unique_id=1345458604]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_colisao_com_projetil" unique_id=2005014651]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_yic5t")
+debug_color = Color(0.78039217, 0.34901962, 0.6784314, 0.38039216)
+
+[connection signal="area_entered" from="Player_colisao_com_projetil" to="." method="_on_player_colisao_com_projetil_area_entered"]
