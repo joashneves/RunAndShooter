@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2ffkdgxdj7ew"
-path="res://.godot/imported/Inimigo_vespa.png-5e24059fde002dadfe370703033a723e.ctex"
+uid="uid://sq27ckru078h"
+path="res://.godot/imported/tiro_vespa.png-0c7d2f95501ddba880fd990183f39ae1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Inimigos/Inimigo_vespa.png"
-dest_files=["res://.godot/imported/Inimigo_vespa.png-5e24059fde002dadfe370703033a723e.ctex"]
+source_file="res://Assets/Inimigos/Inimigo_vespa/tiro_vespa.png"
+dest_files=["res://.godot/imported/tiro_vespa.png-0c7d2f95501ddba880fd990183f39ae1.ctex"]
 
 [params]
 

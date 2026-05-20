@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dsyp22l6y0mkb" path="res://Scene/Camera/camera_de_level.tscn" id="3_hd250"]
 [ext_resource type="PackedScene" uid="uid://wjvpxhewn7yp" path="res://Scene/Inimigos/Inimigo_base/inimigo.tscn" id="4_3o5mm"]
 [ext_resource type="PackedScene" uid="uid://divn075mmdc5k" path="res://Scene/Upgrades/upgrade.tscn" id="5_g363h"]
+[ext_resource type="PackedScene" uid="uid://daauk8bm2thj7" path="res://Scene/Inimigos/Inimigo_voador/inimigo_voador.tscn" id="6_0gxxt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fo8uu"]
 resource_name = "TileSetChap"
@@ -73,3 +74,9 @@ position = Vector2(411, -24)
 position = Vector2(268, -21)
 
 [node name="Upgrade" parent="." unique_id=932536405 instance=ExtResource("5_g363h")]
+
+[node name="Inimigo5" parent="." unique_id=462183735 instance=ExtResource("6_0gxxt")]
+position = Vector2(210, -56)
+
+[node name="Inimigo6" parent="." unique_id=563916218 instance=ExtResource("6_0gxxt")]
+position = Vector2(268, -52)

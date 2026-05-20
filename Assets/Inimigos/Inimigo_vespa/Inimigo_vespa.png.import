@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dq7juuyugwxl0"
-path="res://.godot/imported/Inimigo_bomba.png-ee6102b57e438ef774fad091a09515c3.ctex"
+uid="uid://b2ffkdgxdj7ew"
+path="res://.godot/imported/Inimigo_vespa.png-212a4dd70fe7e404cfc8edc064ec9ccc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Inimigos/Inimigo_bomba.png"
-dest_files=["res://.godot/imported/Inimigo_bomba.png-ee6102b57e438ef774fad091a09515c3.ctex"]
+source_file="res://Assets/Inimigos/Inimigo_vespa/Inimigo_vespa.png"
+dest_files=["res://.godot/imported/Inimigo_vespa.png-212a4dd70fe7e404cfc8edc064ec9ccc.ctex"]
 
 [params]
 

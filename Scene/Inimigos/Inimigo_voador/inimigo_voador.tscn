@@ -1,14 +1,14 @@
-[gd_scene format=3 uid="uid://wjvpxhewn7yp"]
+[gd_scene format=3 uid="uid://daauk8bm2thj7"]
 
-[ext_resource type="Script" uid="uid://dllqig3lermqi" path="res://Scene/Inimigos/Inimigo_base/inimigo_base.gd" id="1_pfh8l"]
-[ext_resource type="PackedScene" uid="uid://bnbsicg7f1lr1" path="res://Scene/Inimigos/Inimigo_base/Tiro_inimigo.tscn" id="2_5sb3m"]
-[ext_resource type="Texture2D" uid="uid://cffhqsp1ocp0f" path="res://Assets/Inimigos/Inimigo_base/Inimigo_base.png" id="2_pfh8l"]
+[ext_resource type="Script" uid="uid://bpjodjx8bf3gn" path="res://Scene/Inimigos/Inimigo_voador/inimigo_voador.gd" id="1_qitcv"]
+[ext_resource type="PackedScene" uid="uid://bnbsicg7f1lr1" path="res://Scene/Inimigos/Inimigo_base/Tiro_inimigo.tscn" id="2_a7ty2"]
+[ext_resource type="Texture2D" uid="uid://b2ffkdgxdj7ew" path="res://Assets/Inimigos/Inimigo_vespa/Inimigo_vespa.png" id="2_qitcv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3o5mm"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_pfh8l")
+"texture": ExtResource("2_qitcv")
 }],
 "loop": true,
 "name": &"default",
@@ -16,25 +16,25 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3o5mm"]
-size = Vector2(6, 11)
+size = Vector2(15, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pfh8l"]
 size = Vector2(9, 9)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pfh8l"]
-radius = 62.072536
+[sub_resource type="CircleShape2D" id="CircleShape2D_qitcv"]
+radius = 114.00439
 
 [node name="Inimigo" type="CharacterBody2D" unique_id=144424640 groups=["inimigos"]]
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_pfh8l")
-projetil = ExtResource("2_5sb3m")
+script = ExtResource("1_qitcv")
+projetil = ExtResource("2_a7ty2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2028544022]
 sprite_frames = SubResource("SpriteFrames_3o5mm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=700590504]
-position = Vector2(0, 0.5)
+position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_3o5mm")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1554563176]
@@ -47,10 +47,10 @@ rect = Rect2(-16.529533, -11.050004, 33.059067, 22.100008)
 position = Vector2(7, 0)
 shape = SubResource("RectangleShape2D_pfh8l")
 
-[node name="AreaDePlayer" type="Area2D" parent="." unique_id=983048244]
+[node name="AreaDePlayer" type="Area2D" parent="." unique_id=398136538]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDePlayer" unique_id=1030744583]
-shape = SubResource("CircleShape2D_pfh8l")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDePlayer" unique_id=956376010]
+shape = SubResource("CircleShape2D_qitcv")
 debug_color = Color(0.8272523, 0.3956009, 0, 0.15294118)
 
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]

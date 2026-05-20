@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bnbsicg7f1lr1"]
+
+[ext_resource type="Texture2D" uid="uid://sq27ckru078h" path="res://Assets/Inimigos/Inimigo_vespa/tiro_vespa.png" id="1_awqk5"]
+[ext_resource type="Script" uid="uid://c160h4nrqqgws" path="res://Scene/Inimigos/Inimigo_base/tiro_inimigo.gd" id="1_p7usb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7usb"]
+size = Vector2(9, 3)
+
+[node name="TiroInimigo" type="Area2D" unique_id=1131329620 groups=["inimigo_tiro"]]
+script = ExtResource("1_p7usb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2092475747]
+texture = ExtResource("1_awqk5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1956152011]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_p7usb")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=570186014]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
