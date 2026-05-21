@@ -25,3 +25,8 @@ func _on_body_entered(body: Node2D) -> void:
 		print("acertei")
 		queue_free()
 		
+
+	
+	if body is TileMap or body is TileMapLayer:
+		queue_free()
+		
