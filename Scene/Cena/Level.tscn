@@ -62,9 +62,6 @@ position = Vector2(-77, -2)
 [node name="CameraDeLevel" parent="." unique_id=669598116 node_paths=PackedStringArray("alvo") instance=ExtResource("3_hd250")]
 alvo = NodePath("../Player")
 
-[node name="Inimigo" parent="." unique_id=144424640 instance=ExtResource("4_3o5mm")]
-position = Vector2(113, -16)
-
 [node name="Inimigo2" parent="." unique_id=536494706 instance=ExtResource("4_3o5mm")]
 position = Vector2(216, -16)
 
@@ -81,9 +78,6 @@ position = Vector2(210, -56)
 
 [node name="Inimigo6" parent="." unique_id=563916218 instance=ExtResource("6_0gxxt")]
 position = Vector2(268, -52)
-
-[node name="Inimigo7" parent="." unique_id=628519958 instance=ExtResource("7_fo8uu")]
-position = Vector2(79, -18)
 
 [node name="Inimigo8" parent="." unique_id=1101994725 instance=ExtResource("7_fo8uu")]
 position = Vector2(244, 6)

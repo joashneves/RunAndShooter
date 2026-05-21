@@ -1,21 +1,88 @@
 [gd_scene format=3 uid="uid://dkxp38m4xj7dk"]
 
 [ext_resource type="Script" uid="uid://ysconkgm6a1m" path="res://Scene/Player/player.gd" id="1_yic5t"]
-[ext_resource type="Texture2D" uid="uid://dxaq2tihbe3m8" path="res://Assets/player_base_sprite_temp.png" id="2_yic5t"]
+[ext_resource type="Texture2D" uid="uid://doxoegm6foqur" path="res://Assets/player/player_walk_base/player_walk_base[0].png" id="2_88wa8"]
+[ext_resource type="Texture2D" uid="uid://bk5s5o2qsjyxt" path="res://Assets/player/player_andando_deitado/player_walk_deitado.png" id="3_ewflj"]
+[ext_resource type="Texture2D" uid="uid://ddnhi1nhwwjvy" path="res://Assets/player/player_walk_base/player_walk_base[1].png" id="3_jd8gp"]
+[ext_resource type="Texture2D" uid="uid://cu6cadkfj1mk2" path="res://Assets/player/player_walk_base/player_walk_base[2].png" id="4_ewflj"]
+[ext_resource type="Texture2D" uid="uid://dy13jow48h5o0" path="res://Assets/player/player_walk_base/player_walk_base[3].png" id="5_2x3rd"]
+[ext_resource type="Texture2D" uid="uid://dcfopcbthxp64" path="res://Assets/player/player_morto/player_morto.png" id="7_2x3rd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usf6g"]
+atlas = ExtResource("3_ewflj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b00hk"]
+atlas = ExtResource("3_ewflj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hklmv"]
+atlas = ExtResource("3_ewflj")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3j58g"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_yic5t")
+"texture": ExtResource("2_88wa8")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usf6g")
+}],
+"loop": true,
+"name": &"default_deitado",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usf6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b00hk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hklmv")
+}],
+"loop": true,
+"name": &"player_andando_deitado",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_88wa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jd8gp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ewflj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2x3rd")
+}],
+"loop": true,
+"name": &"player_andando_em_pe",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_2x3rd")
+}],
+"loop": true,
+"name": &"player_morto",
+"speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hd250"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewflj"]
 size = Vector2(6, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hd250"]
+size = Vector2(10.5, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yic5t"]
 size = Vector2(6, 11)
@@ -23,19 +90,30 @@ size = Vector2(6, 11)
 [node name="player" type="CharacterBody2D" unique_id=134499622 groups=["players"]]
 script = ExtResource("1_yic5t")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1233457267]
-position = Vector2(0, 2)
+[node name="AnimacaoPlayer" type="AnimatedSprite2D" parent="." unique_id=1233457267]
 sprite_frames = SubResource("SpriteFrames_3j58g")
+animation = &"player_andando_deitado"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=960315573]
+[node name="ColisaoPlayerNormal" type="CollisionShape2D" parent="." unique_id=960315573]
 position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ewflj")
+
+[node name="ColisaoPlayerDeitado" type="CollisionShape2D" parent="." unique_id=287082884]
+position = Vector2(0.5, 3.5)
 shape = SubResource("RectangleShape2D_hd250")
+disabled = true
 
 [node name="Player_colisao_com_projetil" type="Area2D" parent="." unique_id=1345458604]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_colisao_com_projetil" unique_id=2005014651]
+[node name="ColisaoAreaPlayer" type="CollisionShape2D" parent="Player_colisao_com_projetil" unique_id=2005014651]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_yic5t")
 debug_color = Color(0.78039217, 0.34901962, 0.6784314, 0.38039216)
+
+[node name="Tiro_em_pe" type="Marker2D" parent="." unique_id=127553003]
+position = Vector2(5, -1)
+
+[node name="Tiro_deitado" type="Marker2D" parent="." unique_id=1544325181]
+position = Vector2(6, 3)
 
 [connection signal="area_entered" from="Player_colisao_com_projetil" to="." method="_on_player_colisao_com_projetil_area_entered"]
