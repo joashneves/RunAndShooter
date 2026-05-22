@@ -111,9 +111,13 @@ shape = SubResource("RectangleShape2D_yic5t")
 debug_color = Color(0.78039217, 0.34901962, 0.6784314, 0.38039216)
 
 [node name="Tiro_em_pe" type="Marker2D" parent="." unique_id=127553003]
-position = Vector2(5, -1)
+position = Vector2(0, -1)
 
 [node name="Tiro_deitado" type="Marker2D" parent="." unique_id=1544325181]
-position = Vector2(6, 3)
+position = Vector2(0, 3)
+
+[node name="Reviver" type="Timer" parent="." unique_id=2100671029]
+one_shot = true
 
 [connection signal="area_entered" from="Player_colisao_com_projetil" to="." method="_on_player_colisao_com_projetil_area_entered"]
+[connection signal="timeout" from="Reviver" to="." method="_on_reviver_timeout"]

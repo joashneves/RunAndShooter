@@ -2,12 +2,15 @@ extends CharacterBody2D
 class_name Player
 @export var velocidade : float = 50;
 @export var velocidade_do_pulo : float = -200;
-@export var esta_vivo : bool = false;
+@export var esta_vivo : bool = true;
+@export var total_de_tentativas : int = 10
+var tentativas_restantes : int = total_de_tentativas
 
 @onready var animacao_player: AnimatedSprite2D = $AnimacaoPlayer
 @onready var colisao_player_normal: CollisionShape2D = $ColisaoPlayerNormal
 @onready var colisao_player_deitado: CollisionShape2D = $ColisaoPlayerDeitado
 @onready var colisao_area_player: CollisionShape2D = $Player_colisao_com_projetil/ColisaoAreaPlayer
+@onready var reviver: Timer = $Reviver
 
 # movimento
 var esta_deitado : bool = false
@@ -35,15 +38,19 @@ var buff_de_metralhadora_municao: int = 0
 var buff_de_metralhadora_max : float = 10
 
 func _process(delta: float) -> void:
+	if !esta_vivo: return
 	se_estiver_deitado()
 	animacao_tocando()
 	atirar(delta)
 	gerenciar_buffs(delta)
 		
 func _physics_process(delta: float) -> void:
+	if !esta_vivo:
+		velocity.y += gravity * delta
+		move_and_slide()
+		return
 	direcao_visao()
 	movimento(delta)
-	
 	
 func atirar(delta):
 	tempo_de_tiro_atual += delta
@@ -78,7 +85,6 @@ func gerenciar_buffs(delta):
 		tempo_de_tiro = tempo_de_tiro_padrao
 
 func movimento(delta : float):
-	
 	movimento_horizontal.x = Input.get_action_strength("tecla_direita") - Input.get_action_strength("tecla_esquerda");
 
 	if not is_on_floor():
@@ -138,5 +144,50 @@ func animacao_tocando():
 
 func _on_player_colisao_com_projetil_area_entered(area: Area2D) -> void:
 	if area.is_in_group("inimigo_tiro"):
-		area.queue_free()
-		get_tree().reload_current_scene()
+		morte()
+		
+func morte():
+	if !esta_vivo: return
+	velocity.y = velocidade_do_pulo
+	var direcao_empurrao = 0
+	if movimento_horizontal.x != 0:
+		direcao_empurrao = -sin(movimento_horizontal.x)
+	else:
+		direcao_empurrao = -animacao_player.scale.x 
+	velocity.x = direcao_empurrao * 50
+	
+	colisao_player_normal.disabled = true
+	colisao_player_deitado.disabled = true
+	colisao_area_player.disabled = true
+	
+	animacao_player.play("player_morto")
+	esta_vivo = false
+	tentativas_restantes -= 1
+	reviver.start()
+	await get_tree().create_timer(0.4).timeout
+	velocity.x = 0
+		
+
+func _on_reviver_timeout() -> void:
+	esta_vivo = true
+	velocity = Vector2.ZERO
+	animacao_player.play("default")
+	colisao_player_normal.disabled = false
+	colisao_player_deitado.disabled = true
+	colisao_area_player.disabled = false
+	
+	var camera = get_viewport().get_camera_2d()
+	
+	if camera:
+		var viewport_size = get_viewport_rect().size
+		var largura_da_tela = viewport_size.x / camera.zoom.x
+		var altura_da_tela = viewport_size.y / camera.zoom.y
+		
+		var centro_camera = camera.get_screen_center_position()
+		
+		var borda_esquerda = centro_camera.x - (largura_da_tela / 2)
+		var topo_da_tela = centro_camera.y - (altura_da_tela / 2)
+		global_position.x = borda_esquerda + 50
+		global_position.y = topo_da_tela - 100
+	else:
+		global_position.y = -200 

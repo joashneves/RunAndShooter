@@ -81,3 +81,5 @@ position = Vector2(268, -52)
 
 [node name="Inimigo8" parent="." unique_id=1101994725 instance=ExtResource("7_fo8uu")]
 position = Vector2(244, 6)
+
+[node name="Timer" type="Timer" parent="Inimigo8" unique_id=1402980316]

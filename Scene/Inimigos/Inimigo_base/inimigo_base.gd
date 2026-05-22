@@ -69,7 +69,7 @@ func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 func _on_area_de_hit_body_entered(body: Node2D) -> void:
 	if body.is_in_group("players"):
 		velocidade = 0
-		get_tree().reload_current_scene()
+		body.morte()
 
 
 func _on_area_de_player_body_entered(body: Node2D) -> void:
