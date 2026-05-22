@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://divn075mmdc5k" path="res://Scene/Upgrades/upgrade.tscn" id="5_g363h"]
 [ext_resource type="PackedScene" uid="uid://daauk8bm2thj7" path="res://Scene/Inimigos/Inimigo_voador/inimigo_voador.tscn" id="6_0gxxt"]
 [ext_resource type="PackedScene" uid="uid://7pxbhmy7qcda" path="res://Scene/Inimigos/Inimigo_bomba/inimigo_bomba.tscn" id="7_fo8uu"]
+[ext_resource type="PackedScene" uid="uid://wgq4wtteqveg" path="res://Scene/Player/Dado_especial/Explosao_vertical/Explosao_vertical.tscn" id="8_j603w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fo8uu"]
 resource_name = "TileSetChap"
@@ -83,3 +84,6 @@ position = Vector2(268, -52)
 position = Vector2(244, 6)
 
 [node name="Timer" type="Timer" parent="Inimigo8" unique_id=1402980316]
+
+[node name="ExplosaoVertical" parent="." unique_id=936013690 instance=ExtResource("8_j603w")]
+position = Vector2(-125, 15)

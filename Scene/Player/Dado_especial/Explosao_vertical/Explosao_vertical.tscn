@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://wgq4wtteqveg"]
+
+[ext_resource type="Script" uid="uid://wta74710gm7h" path="res://Scene/Player/Dado_especial/Explosao_vertical/explosao_vertical.gd" id="1_0xf6t"]
+[ext_resource type="Texture2D" uid="uid://cc80edpu4mr6t" path="res://Assets/player/dado/Explosao_vertical/explosao_vertical1.png" id="1_pfd0i"]
+[ext_resource type="Texture2D" uid="uid://b5k38y7aawb8w" path="res://Assets/player/dado/Explosao_vertical/explosao_vertical2.png" id="2_0xf6t"]
+[ext_resource type="Texture2D" uid="uid://dnmp20g852spl" path="res://Assets/player/dado/Explosao_vertical/explosao_vertical3.png" id="3_sejtt"]
+[ext_resource type="Texture2D" uid="uid://b0mtc02dwikft" path="res://Assets/player/dado/Explosao_vertical/explosao_vertical4.png" id="4_j56gq"]
+[ext_resource type="Texture2D" uid="uid://ccguprmc1osks" path="res://Assets/player/dado/Explosao_vertical/explosao_vertical6.png" id="5_10jb4"]
+[ext_resource type="Texture2D" uid="uid://buydy6q717qoq" path="res://Assets/player/dado/Explosao_vertical/explosao_vertical7.png" id="6_uyj0r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfd0i"]
+size = Vector2(17, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vy0u2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pfd0i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0xf6t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sejtt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_j56gq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_10jb4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_uyj0r")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ExplosaoVertical" type="Area2D" unique_id=936013690 groups=["tiro_do_player"]]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_0xf6t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1983944526]
+shape = SubResource("RectangleShape2D_pfd0i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1210498241]
+sprite_frames = SubResource("SpriteFrames_vy0u2")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

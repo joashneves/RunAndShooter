@@ -22,6 +22,7 @@ var direcao_visao_var : Vector2 = Vector2.ZERO
 
 # Tiro
 const TIRO_PLAYER_BASE = preload("uid://d1xy77uo40bm0")
+const DADO_ESPECIAL = preload("uid://ccgrle47t5j63")
 
 @onready var tiro_em_pe_marker: Marker2D = $Tiro_em_pe
 @onready var tiro_deitado_marker: Marker2D = $Tiro_deitado
@@ -62,7 +63,15 @@ func atirar(delta):
 			tiro_normal(delta)
 			
 		tempo_de_tiro_atual = 0
-
+	if Input.is_action_just_pressed("tiro_especial"):
+		tiro_especial(delta)
+		
+func tiro_especial(delta):
+	var dado_especial = DADO_ESPECIAL.instantiate()
+	dado_especial.global_position = global_position
+	dado_especial.direcao = direcao_visao_var
+	get_tree().root.add_child(dado_especial)
+	
 func tiro_normal(delta):
 	var tiro = TIRO_PLAYER_BASE.instantiate()
 	tiro.global_position = tiro_marker.global_position

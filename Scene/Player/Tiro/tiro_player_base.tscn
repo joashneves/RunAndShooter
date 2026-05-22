@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d1xy77uo40bm0"]
 
-[ext_resource type="Script" uid="uid://u773ocjohgux" path="res://Scene/Player/tiro_player_base.gd" id="1_huo5k"]
+[ext_resource type="Script" uid="uid://u773ocjohgux" path="res://Scene/Player/Tiro/tiro_player_base.gd" id="1_huo5k"]
 [ext_resource type="Texture2D" uid="uid://byf5ndkm572jn" path="res://Assets/player/cartas.png" id="2_huo5k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g363h"]
