@@ -8,6 +8,7 @@ func _physics_process(delta: float) -> void:
 			pass
 		"movendo":
 			movimento_inimigo(delta)
+			check_camera_boundaries()
 		"atacando":
 			pass
 			
@@ -19,10 +20,13 @@ func atacar_player():
 	get_tree().root.add_child(tiro)
 	await get_tree().create_timer(0.5).timeout
 	status_atual = status[1]
-			
+
 func movimento_inimigo(delta):
-	position += direcao * velocidade * delta
+	velocity.x = direcao.x * velocidade
 	move_and_slide()
+	
+	if is_on_wall():
+		flip()
 	
 # Quando player tocar no hit faça alguma coisa
 func _on_area_de_hit_body_entered(body: Node2D) -> void:
@@ -36,3 +40,8 @@ func _on_area_de_player_body_entered(body: Node2D) -> void:
 		status_atual = status[0]
 		atacar_player()
 		player = body
+
+
+func _on_area_de_player_body_exited(body: Node2D) -> void:
+	if body == player:
+		player == null

@@ -13,7 +13,6 @@ var inimigo_na_tela : bool = false
 var direcao : Vector2 = Vector2.LEFT
 var vida : int = 1;
 
-@onready var inimigo: Inimigo_base = $"."
 @onready var player : Player = get_tree().get_first_node_in_group("players")
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -22,10 +21,10 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready() -> void:
 	if player:
 		if player.position.x < position.x:
-			inimigo.scale.x = -1
+			scale.x = -1
 			direcao = Vector2.LEFT
 		elif player.position.x > position.x:
-			inimigo.scale.x = 1			
+			scale.x = 1			
 			direcao = Vector2.RIGHT
 
 func _process(delta: float) -> void:
@@ -40,6 +39,7 @@ func _physics_process(delta: float) -> void:
 			pass
 		"movendo":
 			movimento_inimigo(delta)
+			check_camera_boundaries()
 		"atacando":
 			pass
 			
@@ -55,8 +55,28 @@ func atacar_player():
 func movimento_inimigo(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	position += direcao * velocidade * delta
+	
+	velocity.x = direcao.x * velocidade
 	move_and_slide()
+	
+	if is_on_wall():
+		flip()
+
+func flip():
+	direcao.x *= -1
+	scale.x = direcao.x
+
+func check_camera_boundaries():
+	var cam = get_viewport().get_camera_2d()
+	if cam:
+		var largura_da_tela = get_viewport_rect().size.x / cam.zoom.x
+		var borda_esquerda = cam.global_position.x - (largura_da_tela / 2)
+		var borda_direita = cam.global_position.x + (largura_da_tela / 2)
+		
+		if global_position.x <= borda_esquerda and direcao.x < 0:
+			flip()
+		elif global_position.x >= borda_direita and direcao.x > 0:
+			flip()
 	
 func verifica_vida():
 	if vida <= 0:

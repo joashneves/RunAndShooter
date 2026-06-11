@@ -1,9 +1,13 @@
 extends CharacterBody2D
 class_name Player
+
+@export var vida : int = 10
 @export var velocidade : float = 50;
+@export var invuneravel : bool = false;
 @export var velocidade_do_pulo : float = -200;
 @export var esta_vivo : bool = true;
 @export var total_de_tentativas : int = 10
+@export var bombas : int = 5
 var tentativas_restantes : int = total_de_tentativas
 
 @onready var animacao_player: AnimatedSprite2D = $AnimacaoPlayer
@@ -11,6 +15,7 @@ var tentativas_restantes : int = total_de_tentativas
 @onready var colisao_player_deitado: CollisionShape2D = $ColisaoPlayerDeitado
 @onready var colisao_area_player: CollisionShape2D = $Player_colisao_com_projetil/ColisaoAreaPlayer
 @onready var reviver: Timer = $Reviver
+@onready var invencivel: Timer = $Invencivel
 
 # movimento
 var esta_deitado : bool = false
@@ -67,10 +72,12 @@ func atirar(delta):
 		tiro_especial(delta)
 		
 func tiro_especial(delta):
-	var dado_especial = DADO_ESPECIAL.instantiate()
-	dado_especial.global_position = global_position
-	dado_especial.direcao = direcao_visao_var
-	get_tree().root.add_child(dado_especial)
+	if bombas > 0:
+		var dado_especial = DADO_ESPECIAL.instantiate()
+		dado_especial.global_position = global_position
+		dado_especial.direcao = direcao_visao_var
+		get_tree().root.add_child(dado_especial)
+		bombas -= 1;
 	
 func tiro_normal(delta):
 	var tiro = TIRO_PLAYER_BASE.instantiate()
@@ -100,7 +107,7 @@ func movimento(delta : float):
 		velocity.y += gravity * delta
 		
 	# Handle jump.
-	if  Input.is_action_just_pressed("pular") and is_on_floor():
+	if Input.is_action_just_pressed("pular") and is_on_floor():
 		velocity.y = velocidade_do_pulo
 		
 	movimento_horizontal = movimento_horizontal.normalized()
@@ -156,7 +163,8 @@ func _on_player_colisao_com_projetil_area_entered(area: Area2D) -> void:
 		morte()
 		
 func morte():
-	if !esta_vivo: return
+	if !esta_vivo or invuneravel: return
+	invuneravel = true
 	velocity.y = velocidade_do_pulo
 	var direcao_empurrao = 0
 	if movimento_horizontal.x != 0:
@@ -172,10 +180,10 @@ func morte():
 	animacao_player.play("player_morto")
 	esta_vivo = false
 	tentativas_restantes -= 1
-	reviver.start()
 	await get_tree().create_timer(0.4).timeout
+	reviver.start()
 	velocity.x = 0
-		
+	vida -= 1;
 
 func _on_reviver_timeout() -> void:
 	esta_vivo = true
@@ -200,3 +208,9 @@ func _on_reviver_timeout() -> void:
 		global_position.y = topo_da_tela - 100
 	else:
 		global_position.y = -200 
+	
+	invencivel.start()
+
+
+func _on_invencivel_timeout() -> void:
+	invuneravel = false

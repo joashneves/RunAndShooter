@@ -92,7 +92,6 @@ script = ExtResource("1_yic5t")
 
 [node name="AnimacaoPlayer" type="AnimatedSprite2D" parent="." unique_id=1233457267]
 sprite_frames = SubResource("SpriteFrames_3j58g")
-animation = &"player_andando_deitado"
 
 [node name="ColisaoPlayerNormal" type="CollisionShape2D" parent="." unique_id=960315573]
 position = Vector2(0, 0.5)
@@ -119,5 +118,10 @@ position = Vector2(0, 3)
 [node name="Reviver" type="Timer" parent="." unique_id=2100671029]
 one_shot = true
 
+[node name="Invencivel" type="Timer" parent="." unique_id=2107253495]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="area_entered" from="Player_colisao_com_projetil" to="." method="_on_player_colisao_com_projetil_area_entered"]
 [connection signal="timeout" from="Reviver" to="." method="_on_reviver_timeout"]
+[connection signal="timeout" from="Invencivel" to="." method="_on_invencivel_timeout"]

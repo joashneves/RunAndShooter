@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="RunAndShooter"
-run/main_scene="uid://cjdsyaujwgpn2"
+run/main_scene="uid://bx3jhbb7onn8d"
 config/features=PackedStringArray("4.6")
-config/icon="res://icon.svg"
+config/icon="uid://bsicdi7nootak"
 
 [display]
 
@@ -21,6 +21,15 @@ window/size/viewport_width=640
 window/size/viewport_height=360
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "red",
+"res://Scene/": "orange",
+"res://Scene/Cena/": "green",
+"res://Util/": "yellow"
+}
 
 [global_group]
 
