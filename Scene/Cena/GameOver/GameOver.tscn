@@ -58,3 +58,7 @@ offset_right = 342.0
 offset_bottom = 251.0
 theme_override_fonts/font = ExtResource("2_fgq0s")
 text = "Sair"
+
+[connection signal="button_down" from="CanvasLayer/Control/Tentarnovamente" to="CanvasLayer/Control" method="_on_tentarnovamente_button_down"]
+[connection signal="button_down" from="CanvasLayer/Control/Menu" to="CanvasLayer/Control" method="_on_menu_button_down"]
+[connection signal="button_down" from="CanvasLayer/Control/Sair" to="CanvasLayer/Control" method="_on_sair_button_down"]

@@ -49,6 +49,8 @@ func _process(delta: float) -> void:
 	animacao_tocando()
 	atirar(delta)
 	gerenciar_buffs(delta)
+	if vida <= 0:
+		GamerOverQuandoZeroDeVida()
 		
 func _physics_process(delta: float) -> void:
 	if !esta_vivo:
@@ -211,6 +213,8 @@ func _on_reviver_timeout() -> void:
 	
 	invencivel.start()
 
+func GamerOverQuandoZeroDeVida():
+	GameManager.VaiParaGameOver()
 
 func _on_invencivel_timeout() -> void:
 	invuneravel = false
