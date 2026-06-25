@@ -14,3 +14,7 @@ func _process(delta: float) -> void:
 
 func _on_iniciar_pressed() -> void:
 	get_tree().change_scene_to_packed(LEVEL)
+
+
+func _on_sair_button_down() -> void:
+	get_tree().quit()

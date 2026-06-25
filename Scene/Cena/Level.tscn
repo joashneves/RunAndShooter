@@ -74,8 +74,8 @@ texture = ExtResource("1_0gxxt")
 3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_j603w"]
-physics_layer_0/collision_layer = 3
-physics_layer_0/collision_mask = 3
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 4
 sources/0 = SubResource("TileSetAtlasSource_fo8uu")
 
 [node name="Level" type="Node2D" unique_id=376255386]
@@ -92,7 +92,6 @@ tile_set = SubResource("TileSet_j603w")
 
 [node name="Player" parent="." unique_id=134499622 instance=ExtResource("1_3j58g")]
 position = Vector2(-93, 24)
-vida = 1
 
 [node name="CameraDeLevel" parent="." unique_id=669598116 node_paths=PackedStringArray("alvo") instance=ExtResource("3_hd250")]
 alvo = NodePath("../Player")

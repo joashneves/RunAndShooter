@@ -10,7 +10,6 @@ func _process(delta: float) -> void:
 	botao_hovered(sair)
 	
 
-
 func _on_sair_button_down() -> void:
 	get_tree().quit()
 

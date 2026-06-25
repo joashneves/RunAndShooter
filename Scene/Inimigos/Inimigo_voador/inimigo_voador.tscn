@@ -26,7 +26,7 @@ radius = 114.00439
 
 [node name="Inimigo" type="CharacterBody2D" unique_id=144424640 groups=["inimigos"]]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 4
 script = ExtResource("1_qitcv")
 projetil = ExtResource("2_a7ty2")
 

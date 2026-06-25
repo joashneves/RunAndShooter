@@ -38,8 +38,8 @@ animations = [{
 }]
 
 [node name="ExplosaoVertical" type="Area2D" unique_id=936013690 groups=["tiro_do_player"]]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_0xf6t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1983944526]

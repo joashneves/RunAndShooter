@@ -90,8 +90,10 @@ tiro_especial={
 
 2d_render/layer_1="Player"
 2d_render/layer_2="Inimigos"
+2d_render/layer_3="Cenario"
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Inimigos"
+2d_physics/layer_3="Cenario"
 
 [rendering]
 

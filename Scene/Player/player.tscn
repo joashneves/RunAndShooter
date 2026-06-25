@@ -88,6 +88,7 @@ size = Vector2(10.5, 5)
 size = Vector2(6, 11)
 
 [node name="player" type="CharacterBody2D" unique_id=134499622 groups=["players"]]
+collision_mask = 4
 script = ExtResource("1_yic5t")
 
 [node name="AnimacaoPlayer" type="AnimatedSprite2D" parent="." unique_id=1233457267]

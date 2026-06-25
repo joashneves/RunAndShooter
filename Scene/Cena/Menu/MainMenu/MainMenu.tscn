@@ -61,3 +61,4 @@ theme_override_fonts/font = ExtResource("2_ml401")
 text = "Sair"
 
 [connection signal="pressed" from="CanvasLayer/Control/Iniciar" to="CanvasLayer/Control" method="_on_iniciar_pressed"]
+[connection signal="button_down" from="CanvasLayer/Control/Sair" to="CanvasLayer/Control" method="_on_sair_button_down"]
