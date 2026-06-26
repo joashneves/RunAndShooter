@@ -128,8 +128,8 @@ func movimento_inimigo(delta):
 		if not is_on_floor():
 			velocity.y += gravity * delta
 		
-		# Persegue o player se configurado (e se não estiver preso na parede)
-		if player and is_instance_valid(player) and persegue_player and not is_on_wall():
+		# CORREÇÃO: Removeu o 'and not is_on_wall()' para permitir que mude de direção se o player pular por cima dele
+		if player and is_instance_valid(player) and persegue_player:
 			var dir_player = (player.global_position - global_position).normalized()
 			direcao.x = sign(dir_player.x)
 			if direcao.x == 0:
@@ -148,11 +148,13 @@ func movimento_inimigo(delta):
 				if tempo_preso_na_parede > 0.15:
 					flip()
 					tempo_preso_na_parede = 0.0
+					# Afasta um pouco da parede para não re-colidir no mesmo frame
+					global_position.x += direcao.x * 2.0 
 		else:
 			tempo_preso_na_parede = 0.0
 	else:
 		# Inimigos voadores (não aplicam gravidade)
-		if player and is_instance_valid(player) and persegue_player and not is_on_wall():
+		if player and is_instance_valid(player) and persegue_player:
 			var dir_player = (player.global_position - global_position).normalized()
 			direcao.x = sign(dir_player.x)
 			if direcao.x == 0:
@@ -163,16 +165,15 @@ func movimento_inimigo(delta):
 		move_and_slide()
 		if is_on_wall():
 			flip()
+			global_position.x += direcao.x * 2.0
 
 func movimento_recuo(delta):
 	if player and is_instance_valid(player):
-		# Só recalcula direção se não estiver bloqueado na parede
-		if not is_on_wall():
-			var dir_player = (player.global_position - global_position).normalized()
-			direcao.x = -sign(dir_player.x) # direção oposta
-			if direcao.x == 0:
-				direcao.x = -1
-			atualizar_visual()
+		var dir_player = (player.global_position - global_position).normalized()
+		direcao.x = -sign(dir_player.x) # direção oposta
+		if direcao.x == 0:
+			direcao.x = -1
+		atualizar_visual()
 		
 		if not is_flying:
 			if not is_on_floor():
@@ -189,6 +190,7 @@ func movimento_recuo(delta):
 					if tempo_preso_na_parede > 0.15:
 						flip()
 						tempo_preso_na_parede = 0.0
+						global_position.x += direcao.x * 2.0
 			else:
 				tempo_preso_na_parede = 0.0
 		else:
@@ -196,16 +198,15 @@ func movimento_recuo(delta):
 			move_and_slide()
 			if is_on_wall():
 				flip()
+				global_position.x += direcao.x * 2.0
 
 func movimento_ataque(delta):
 	if player and is_instance_valid(player):
-		# Só vira para o player se não estiver batendo em uma parede
-		if not is_on_wall():
-			var dir_player = (player.global_position - global_position).normalized()
-			direcao.x = sign(dir_player.x) # vira de frente para o player
-			if direcao.x == 0:
-				direcao.x = 1
-			atualizar_visual()
+		var dir_player = (player.global_position - global_position).normalized()
+		direcao.x = sign(dir_player.x) # vira de frente para o player
+		if direcao.x == 0:
+			direcao.x = 1
+		atualizar_visual()
 		
 		if not is_flying:
 			if not is_on_floor():
@@ -222,6 +223,7 @@ func movimento_ataque(delta):
 					if tempo_preso_na_parede > 0.15:
 						flip()
 						tempo_preso_na_parede = 0.0
+						global_position.x += direcao.x * 2.0
 			else:
 				tempo_preso_na_parede = 0.0
 		else:
@@ -229,18 +231,17 @@ func movimento_ataque(delta):
 			move_and_slide()
 			if is_on_wall():
 				flip()
+				global_position.x += direcao.x * 2.0
 
 func flip():
 	direcao.x *= -1
 	atualizar_visual()
 
 func atualizar_visual():
-	# Inverte apenas o sprite visualmente para não bugar a física do nó pai
 	var sprite = get_node_or_null("AnimatedSprite2D")
 	if sprite:
 		sprite.flip_h = (direcao.x < 0)
 	
-	# Inverte o offset horizontal da área de hit
 	var area_hit = get_node_or_null("AreaDeHit")
 	if area_hit:
 		area_hit.position.x = abs(area_hit.position.x) * direcao.x
@@ -252,15 +253,16 @@ func check_camera_boundaries():
 		var borda_esquerda = cam.global_position.x - (largura_da_tela / 2)
 		var borda_direita = cam.global_position.x + (largura_da_tela / 2)
 		
-		# Despawn se o inimigo for deixado muito para trás da câmera
 		if global_position.x < borda_esquerda - 150:
 			queue_free()
 			return
 			
 		if global_position.x <= borda_esquerda and direcao.x < 0:
 			flip()
+			global_position.x += direcao.x * 2.0
 		elif global_position.x >= borda_direita and direcao.x > 0:
 			flip()
+			global_position.x += direcao.x * 2.0
 	
 func verifica_vida():
 	if vida <= 0:
@@ -277,7 +279,6 @@ func piscar_vermelho():
 func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 	inimigo_na_tela = true
 
-# Quando player tocar no hit faça alguma coisa
 func _on_area_de_hit_body_entered(body: Node2D) -> void:
 	if body.is_in_group("players"):
 		velocidade = 0

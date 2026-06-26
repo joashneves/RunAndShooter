@@ -71,16 +71,14 @@ func spawnar_inimigos():
 		return
 		
 	var tamanho_tela = get_viewport().get_visible_rect().size
-	var centro_camera = tamanho_tela / 4
-	
-	var centro_x = centro_camera
+	var centro_camera = tamanho_tela / 2
 	
 	var x_de_spawn : float = 0.0
 	
 	if jogador.global_position.x < centro_camera.x:
-		x_de_spawn = centro_camera.x + 130
+		x_de_spawn = camera.borda_direita 
 	else:
-		x_de_spawn = centro_camera.x - 130
+		x_de_spawn = camera.borda_esquerda 
 		
 	var ponto_de_spawn_base = Vector2(x_de_spawn, jogador.global_position.y)
 	
@@ -123,7 +121,7 @@ func spawnar_inimigos():
 						break
 					else:
 						# Ponto ocupado, joga o Y para cima (subindo na tela)
-						posicao_teste.y -= 32 # Ajuste esse valor de pixels com base no tamanho do sprite
+						posicao_teste.y -= 2 # Ajuste esse valor de pixels com base no tamanho do sprite
 						tentativas += 1
 						
 				inimigo.global_position = posicao_teste
