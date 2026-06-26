@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://7pxbhmy7qcda" path="res://Scene/Inimigos/Inimigo_bomba/inimigo_bomba.tscn" id="7_fo8uu"]
 [ext_resource type="PackedScene" uid="uid://wgq4wtteqveg" path="res://Scene/Player/Dado_especial/Explosao_vertical/Explosao_vertical.tscn" id="8_j603w"]
 [ext_resource type="PackedScene" uid="uid://d85lafeytaxd" path="res://Scene/Hud/hud.tscn" id="9_hdu27"]
+[ext_resource type="PackedScene" uid="uid://dilfwu2bb66ie" path="res://Scene/Objetos/Arena/Arena.tscn" id="11_5mmq8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5mmq8"]
 texture = ExtResource("1_u7rpt")
@@ -125,3 +126,8 @@ position = Vector2(-125, 15)
 [node name="Hud" type="CanvasLayer" parent="." unique_id=576906379]
 
 [node name="Hud" parent="Hud" unique_id=638831613 instance=ExtResource("9_hdu27")]
+
+[node name="Arena" parent="." unique_id=1240392679 instance=ExtResource("11_5mmq8")]
+position = Vector2(666, -42.000004)
+scale = Vector2(12.963768, -10.649357)
+inimigos_scenes = Array[PackedScene]([ExtResource("6_0gxxt"), ExtResource("7_fo8uu"), ExtResource("4_3o5mm")])
