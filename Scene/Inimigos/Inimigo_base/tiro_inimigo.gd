@@ -1,9 +1,7 @@
 extends Area2D
 
-@export var velocidade_da_bala : float = 200;
+@export var velocidade_da_bala : float = 100;
 @export var direcao : Vector2 = Vector2.RIGHT;
-
-
 
 func _ready() -> void:
 	
