@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cpbmj6jbot4ql"]
+
+[ext_resource type="Script" uid="uid://bfqis5c5voqo1" path="res://Scene/Upgrades/Upgrade_metralhadora/upgrade_metralhadora.gd" id="1_dnobx"]
+[ext_resource type="Texture2D" uid="uid://cbg7lbvh1mmf5" path="res://Assets/upgrades/upgrade_arma.png" id="1_edl27"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnobx"]
+size = Vector2(15, 15)
+
+[sub_resource type="Animation" id="Animation_85707"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_c6r48"]
+resource_name = "pra_cima_e_pra_baixo"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 2), Vector2(0, 0), Vector2(0, -2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uwtpc"]
+_data = {
+&"RESET": SubResource("Animation_85707"),
+&"pra_cima_e_pra_baixo": SubResource("Animation_c6r48")
+}
+
+[node name="UpgradeMetralhadora" type="Area2D" unique_id=512010115]
+script = ExtResource("1_dnobx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=485844458]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_dnobx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=745072800 groups=["upgrade_coletavel"]]
+texture = ExtResource("1_edl27")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1422383633]
+libraries/ = SubResource("AnimationLibrary_uwtpc")
+autoplay = &"pra_cima_e_pra_baixo"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

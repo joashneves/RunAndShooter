@@ -32,6 +32,8 @@ const DADO_ESPECIAL = preload("uid://ccgrle47t5j63")
 @onready var tiro_em_pe_marker: Marker2D = $Tiro_em_pe
 @onready var tiro_deitado_marker: Marker2D = $Tiro_deitado
 
+@onready var camera : Camera2D = get_tree().get_first_node_in_group("camera")
+
 var tiro_marker : Marker2D = tiro_deitado_marker
 
 var tempo_de_tiro : float = 1;
@@ -39,9 +41,13 @@ var tempo_de_tiro_padrao : float = tempo_de_tiro
 var tempo_de_tiro_atual : float = tempo_de_tiro;
 
 ## Var upgrade de tiro 1
-var buff_de_metralhadora : float = 0
+var buff_de_metralhadora : int = 0
 var buff_de_metralhadora_municao: int = 0
-var buff_de_metralhadora_max : float = 10
+var buff_de_metralhadora_max : int = 100
+## Var Upgrade de tiro 2
+var buff_de_3_tiros : int = 0
+var buff_de_3_tiros_municao : int = 0
+var buff_de_3_tiros_max : int = 100
 
 func _process(delta: float) -> void:
 	if !esta_vivo: return
@@ -66,6 +72,8 @@ func atirar(delta):
 
 		if buff_de_metralhadora_municao > 0:
 			buff_de_tiro_metralhadora(delta)
+		elif buff_de_3_tiros_municao > 0:
+			buff_de_tiro_de_3(delta)
 		else:
 			tiro_normal(delta)
 			
@@ -93,8 +101,28 @@ func buff_de_tiro_metralhadora(delta):
 	tiro.global_position = tiro_marker.global_position
 	tiro.direcao = direcao_visao_var
 	get_tree().root.add_child(tiro)
-	
 	buff_de_metralhadora_municao -= 1
+
+func buff_de_tiro_de_3(delta):
+	# Define o ângulo de espalhamento em graus (ex: 15 graus para cada lado)
+	var angulo_espalhamento = deg_to_rad(15.0) 
+	
+	# Criamos uma lista com as 3 direções (uma reta, uma rotacionada para um lado e outra para o outro)
+	var direcoes_dos_tiros = [
+		direcao_visao_var, # Tiro do meio (reto)
+		direcao_visao_var.rotated(angulo_espalhamento), # Tiro inclinado para um lado
+		direcao_visao_var.rotated(-angulo_espalhamento) # Tiro inclinado para o outro lado
+	]
+	
+	# Faz um loop para instanciar as 3 balas
+	for direcao_final in direcoes_dos_tiros:
+		var tiro = TIRO_PLAYER_BASE.instantiate()
+		tiro.global_position = tiro_marker.global_position
+		tiro.direcao = direcao_final
+		get_tree().root.add_child(tiro)
+		
+	# Gasta apenas 1 de munição do buff por clique
+	buff_de_3_tiros_municao -= 1
 	
 func gerenciar_buffs(delta):
 	if buff_de_metralhadora_municao > 0:
@@ -178,6 +206,8 @@ func morte():
 	colisao_player_normal.disabled = true
 	colisao_player_deitado.disabled = true
 	colisao_area_player.disabled = true
+	
+	camera.screen_shake()
 	
 	animacao_player.play("player_morto")
 	esta_vivo = false

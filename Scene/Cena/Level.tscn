@@ -5,12 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://bcxcoyfo6s5mi" path="res://Assets/TileSet/Background.png" id="1_u7rpt"]
 [ext_resource type="PackedScene" uid="uid://dsyp22l6y0mkb" path="res://Scene/Camera/camera_de_level.tscn" id="3_hd250"]
 [ext_resource type="PackedScene" uid="uid://wjvpxhewn7yp" path="res://Scene/Inimigos/Inimigo_base/inimigo.tscn" id="4_3o5mm"]
-[ext_resource type="PackedScene" uid="uid://divn075mmdc5k" path="res://Scene/Upgrades/upgrade.tscn" id="5_g363h"]
 [ext_resource type="PackedScene" uid="uid://daauk8bm2thj7" path="res://Scene/Inimigos/Inimigo_voador/inimigo_voador.tscn" id="6_0gxxt"]
 [ext_resource type="PackedScene" uid="uid://7pxbhmy7qcda" path="res://Scene/Inimigos/Inimigo_bomba/inimigo_bomba.tscn" id="7_fo8uu"]
 [ext_resource type="PackedScene" uid="uid://wgq4wtteqveg" path="res://Scene/Player/Dado_especial/Explosao_vertical/Explosao_vertical.tscn" id="8_j603w"]
 [ext_resource type="PackedScene" uid="uid://d85lafeytaxd" path="res://Scene/Hud/hud.tscn" id="9_hdu27"]
 [ext_resource type="PackedScene" uid="uid://dilfwu2bb66ie" path="res://Scene/Objetos/Arena/Arena.tscn" id="11_5mmq8"]
+[ext_resource type="PackedScene" uid="uid://cpbmj6jbot4ql" path="res://Scene/Upgrades/Upgrade_metralhadora/upgrade_metralhadora.tscn" id="11_tdr4y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5mmq8"]
 texture = ExtResource("1_u7rpt")
@@ -94,11 +94,8 @@ tile_set = SubResource("TileSet_j603w")
 [node name="Player" parent="." unique_id=134499622 instance=ExtResource("1_3j58g")]
 position = Vector2(-41, 26)
 
-[node name="CameraDeLevel" parent="." unique_id=669598116 node_paths=PackedStringArray("alvo") instance=ExtResource("3_hd250")]
+[node name="CameraDeLevel" parent="." unique_id=669598116 node_paths=PackedStringArray("alvo") groups=["camera"] instance=ExtResource("3_hd250")]
 alvo = NodePath("../Player")
-
-[node name="Upgrade" parent="." unique_id=932536405 instance=ExtResource("5_g363h")]
-position = Vector2(-1, 22)
 
 [node name="ExplosaoVertical" parent="." unique_id=936013690 instance=ExtResource("8_j603w")]
 position = Vector2(-125, 15)
@@ -118,3 +115,6 @@ position = Vector2(430, 2)
 scale = Vector2(1, 16.971153)
 inimigos_scenes = Array[PackedScene]([ExtResource("4_3o5mm")])
 jogador = NodePath("../Player")
+
+[node name="UpgradeMetralhadora" parent="." unique_id=512010115 instance=ExtResource("11_tdr4y")]
+position = Vector2(-2, 22)

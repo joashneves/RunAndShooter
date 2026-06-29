@@ -42,6 +42,7 @@ inimigos="Grupo do inimigos"
 players="Grupo dos players"
 upgrade_coletavel=""
 inimigo_tiro=""
+camera="grupo da camera"
 
 [input]
 

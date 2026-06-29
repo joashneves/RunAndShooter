@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Inimigo_base
 
+
 # Configurações básicas de movimento
 @export var velocidade : float = 50.0
 @export var projetil : PackedScene
@@ -39,6 +40,8 @@ var tempo_recarga_atual : float = 0.0
 var tempo_preso_na_parede : float = 0.0
 
 @onready var player : Player = get_tree().get_first_node_in_group("players")
+@onready var camera : Camera2D = get_tree().get_first_node_in_group("camera")
+
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
@@ -272,6 +275,7 @@ func verifica_vida():
 
 func piscar_vermelho():
 	var sprite = get_node_or_null("AnimatedSprite2D")
+	camera.screen_shake()
 	if sprite:
 		sprite.modulate = Color(2.5, 0.4, 0.4, 1.0)
 		await get_tree().create_timer(0.15).timeout
