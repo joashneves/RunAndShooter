@@ -208,6 +208,7 @@ func morte():
 	colisao_area_player.disabled = true
 	
 	camera.screen_shake()
+	GameManager.hitStop()
 	
 	animacao_player.play("player_morto")
 	esta_vivo = false

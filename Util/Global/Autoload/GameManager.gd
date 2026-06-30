@@ -14,3 +14,8 @@ func VaiParaMenu():
 
 func VaiParaLevel1():
 	get_tree().change_scene_to_packed(LEVEL);
+
+func hitStop():
+	get_tree().paused = true
+	await get_tree().create_timer(0.1, true, false, true).timeout
+	get_tree().paused = false

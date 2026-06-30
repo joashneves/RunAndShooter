@@ -270,6 +270,7 @@ func check_camera_boundaries():
 func verifica_vida():
 	if vida <= 0:
 		GameManager.pontos += 10;
+		GameManager.hitStop()
 		queue_free()
 		
 
