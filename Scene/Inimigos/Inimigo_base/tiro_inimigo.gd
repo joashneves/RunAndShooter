@@ -11,6 +11,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	position += direcao * velocidade_da_bala * delta
 
+
 func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 	print("Sumi!")
 	queue_free()

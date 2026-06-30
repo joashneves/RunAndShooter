@@ -121,6 +121,7 @@ func atacar_player():
 	# Define a direção do tiro
 	if mira_no_player and player and is_instance_valid(player):
 		tiro.direcao = (player.global_position - global_position).normalized()
+		tiro.rotation = tiro.direcao.angle()
 	else:
 		tiro.direcao = direcao
 		
