@@ -69,14 +69,14 @@ func _physics_process(delta: float) -> void:
 func atirar(delta):
 	tempo_de_tiro_atual += delta
 	if Input.is_action_just_pressed("atira") and tempo_de_tiro_atual >= tempo_de_tiro:
-
+		
 		if buff_de_metralhadora_municao > 0:
 			buff_de_tiro_metralhadora(delta)
 		elif buff_de_3_tiros_municao > 0:
 			buff_de_tiro_de_3(delta)
 		else:
 			tiro_normal(delta)
-			
+		AudioManager.tocar_som_de_carta()
 		tempo_de_tiro_atual = 0
 	if Input.is_action_just_pressed("tiro_especial"):
 		tiro_especial(delta)
@@ -209,6 +209,7 @@ func morte():
 	
 	camera.screen_shake()
 	GameManager.hitStop()
+	AudioManager.tocar_som_hit()
 	
 	animacao_player.play("player_morto")
 	esta_vivo = false

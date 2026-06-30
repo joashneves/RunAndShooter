@@ -272,6 +272,7 @@ func verifica_vida():
 	if vida <= 0:
 		GameManager.pontos += 10;
 		GameManager.hitStop()
+		AudioManager.tocar_som_hit()
 		queue_free()
 		
 

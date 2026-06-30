@@ -18,6 +18,7 @@ func atacar_player():
 func verifica_vida():
 	if vida <= 0:
 		explodir()
+		AudioManager.tocar_som_hit()
 		
 func _on_area_de_hit_body_entered(body: Node2D) -> void:
 	pass
