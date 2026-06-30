@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://co2acc3hsip1t"]
+
+[ext_resource type="Script" uid="uid://d2s2ocy50m3ms" path="res://Util/Particulas/Dano/particula_dano.gd" id="1_eho1a"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_53unn"]
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 1
+emission_sphere_radius = 40.0
+initial_velocity_min = 100.0
+initial_velocity_max = 400.0
+gravity = Vector3(0, 300, 0)
+scale_max = 2.0
+
+[node name="ParticulaDano" type="GPUParticles2D" unique_id=972889142]
+emitting = false
+amount = 4
+lifetime = 0.3
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_53unn")
+script = ExtResource("1_eho1a")

@@ -8,13 +8,26 @@ func _ready() -> void:
 	recua_do_player = false
 	ataque_a_distancia = false
 	persegue_player = true
-	vida = 1 # O inimigo bomba morre com 1 tiro
+	vida = 1 
 
+# Quando ele encosta no player e vai atacar, ele explode
 func atacar_player():
-	queue_free()
+	explodir()
 
-func _exit_tree() -> void:
-	if is_inside_tree():
+# Sobrescreve a função de checar vida do script pai
+func verifica_vida():
+	if vida <= 0:
+		explodir()
+		
+func _on_area_de_hit_body_entered(body: Node2D) -> void:
+	pass
+	
+# Função própria para gerenciar a explosão com segurança
+func explodir():
+	if EXPLOSAO:
 		var explosao = EXPLOSAO.instantiate()
 		explosao.global_position = global_position
 		get_tree().root.add_child(explosao)
+	
+	# Deleta o inimigo DEPOIS de já ter criado a explosão na raiz
+	queue_free()

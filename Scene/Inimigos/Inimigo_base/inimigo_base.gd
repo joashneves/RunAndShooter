@@ -41,6 +41,7 @@ var tempo_preso_na_parede : float = 0.0
 
 @onready var player : Player = get_tree().get_first_node_in_group("players")
 @onready var camera : Camera2D = get_tree().get_first_node_in_group("camera")
+const PARTICULA_DANO = preload("uid://co2acc3hsip1t")
 
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 

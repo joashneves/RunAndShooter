@@ -79,6 +79,9 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 4
 sources/0 = SubResource("TileSetAtlasSource_fo8uu")
 
+[sub_resource type="Environment" id="Environment_5mmq8"]
+glow_enabled = true
+
 [node name="Level" type="Node2D" unique_id=376255386]
 
 [node name="BackGround" type="TileMap" parent="." unique_id=339201541]
@@ -118,3 +121,6 @@ jogador = NodePath("../Player")
 
 [node name="UpgradeMetralhadora" parent="." unique_id=512010115 instance=ExtResource("11_tdr4y")]
 position = Vector2(-2, 22)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=825073221]
+environment = SubResource("Environment_5mmq8")
