@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://daauk8bm2thj7" path="res://Scene/Inimigos/Inimigo_voador/inimigo_voador.tscn" id="6_0gxxt"]
 [ext_resource type="PackedScene" uid="uid://7pxbhmy7qcda" path="res://Scene/Inimigos/Inimigo_bomba/inimigo_bomba.tscn" id="7_fo8uu"]
 [ext_resource type="PackedScene" uid="uid://wgq4wtteqveg" path="res://Scene/Player/Dado_especial/Explosao_vertical/Explosao_vertical.tscn" id="8_j603w"]
+[ext_resource type="PackedScene" uid="uid://bobohdlg2eu4y" path="res://Scene/Pausa/pausa.tscn" id="8_s6hbn"]
 [ext_resource type="PackedScene" uid="uid://d85lafeytaxd" path="res://Scene/Hud/hud.tscn" id="9_hdu27"]
 [ext_resource type="PackedScene" uid="uid://dilfwu2bb66ie" path="res://Scene/Objetos/Arena/Arena.tscn" id="11_5mmq8"]
 [ext_resource type="PackedScene" uid="uid://cpbmj6jbot4ql" path="res://Scene/Upgrades/Upgrade_metralhadora/upgrade_metralhadora.tscn" id="11_tdr4y"]
@@ -158,6 +159,8 @@ alvo = NodePath("../Player")
 position = Vector2(-125, 15)
 
 [node name="Hud" type="CanvasLayer" parent="." unique_id=576906379]
+
+[node name="Pausa" parent="Hud" unique_id=838538169 instance=ExtResource("8_s6hbn")]
 
 [node name="Hud" parent="Hud" unique_id=638831613 instance=ExtResource("9_hdu27")]
 
