@@ -16,6 +16,7 @@ var tentativas_restantes : int = total_de_tentativas
 @onready var colisao_area_player: CollisionShape2D = $Player_colisao_com_projetil/ColisaoAreaPlayer
 @onready var reviver: Timer = $Reviver
 @onready var invencivel: Timer = $Invencivel
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 # movimento
 var esta_deitado : bool = false
@@ -164,9 +165,12 @@ func se_estiver_deitado():
 		colisao_player_deitado.disabled = false
 		velocidade = 10;
 		tiro_marker = tiro_deitado_marker
+		print("Deitado")
+		print(colisao_player_normal.disabled)
 	elif esta_deitado == false:
 		colisao_player_normal.disabled = false
 		colisao_player_deitado.disabled = true
+		
 		velocidade = 50
 		tiro_marker = tiro_em_pe_marker
 	
@@ -216,6 +220,7 @@ func morte():
 	tentativas_restantes -= 1
 	await get_tree().create_timer(0.4).timeout
 	reviver.start()
+	animation_player.play("invencibilidade")
 	velocity.x = 0
 	vida -= 1;
 
@@ -250,3 +255,4 @@ func GamerOverQuandoZeroDeVida():
 
 func _on_invencivel_timeout() -> void:
 	invuneravel = false
+	animation_player.play("RESET")

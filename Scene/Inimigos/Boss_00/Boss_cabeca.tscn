@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://duxfjgxvcnsko"]
+
+[ext_resource type="Texture2D" uid="uid://vu5qycnr56sv" path="res://Assets/Inimigos/Inimigo_boss/esqueleto-cabeca.png" id="1_ogsfh"]
+[ext_resource type="Script" uid="uid://cb75xu5nx4eru" path="res://Scene/Inimigos/Boss_00/boss_cabeca.gd" id="2_script"]
+[ext_resource type="PackedScene" uid="uid://blv7grf6jwp13" path="res://Scene/Inimigos/Boss_00/Boss_mao.tscn" id="3_3n8sc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3n8sc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ogsfh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogsfh"]
+size = Vector2(22, 30)
+
+[node name="Boss_cabeca" type="CharacterBody2D" unique_id=2135553424 groups=["inimigos"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1475375976]
+sprite_frames = SubResource("SpriteFrames_3n8sc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1871119262]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_ogsfh")
+
+[node name="BossMao" parent="." unique_id=643798974 instance=ExtResource("3_3n8sc")]
+position = Vector2(-31, 22)

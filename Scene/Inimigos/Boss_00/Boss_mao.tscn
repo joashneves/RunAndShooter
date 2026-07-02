@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://blv7grf6jwp13"]
+
+[ext_resource type="Texture2D" uid="uid://ckwu6wtmxafu" path="res://Assets/Inimigos/Inimigo_boss/esqueleto-mao.png" id="1_at3fj"]
+[ext_resource type="Script" uid="uid://bebjfveoi246" path="res://Scene/Inimigos/Boss_00/boss_mao.gd" id="2_script"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d8ju3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_at3fj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_at3fj"]
+size = Vector2(30, 18)
+
+[node name="BossMao" type="CharacterBody2D" unique_id=643798974 groups=["inimigos"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2022079846]
+sprite_frames = SubResource("SpriteFrames_d8ju3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=120157976]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_at3fj")
